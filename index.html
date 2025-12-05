@@ -763,6 +763,7 @@
   </div>
 
   <script>
+    const STORAGE_KEY = 'arkanaCardsGame_ATENEA';
     // Premios con probabilidades
     const prizes = [
       { text: 'Bono del 100%', emoji: '🎁', weight: 35 },
@@ -817,9 +818,8 @@
     let selectedCardIndex = null;
     let wonPrize = null;
 
-    // Check if already played today
     function checkIfPlayedToday() {
-      const savedData = localStorage.getItem('arkanaCardsGame');
+      const savedData = localStorage.getItem(STORAGE_KEY);
       if (savedData) {
         const data = JSON.parse(savedData);
         const today = new Date().toDateString();
@@ -906,7 +906,7 @@
       });
 
       const today = new Date().toDateString();
-      localStorage.setItem('arkanaCardsGame', JSON.stringify({
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
         date: today,
         cardIndex: index,
         prize: prize
